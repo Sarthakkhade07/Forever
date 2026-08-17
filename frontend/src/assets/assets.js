@@ -1,9 +1,29 @@
 import hero_img from './hero_img.png'
 import p_img47 from './p_img47.png'
 import profile_icon from './profile_icon.png'
+import logo from './logo.png'
+import cart_icon from './cart_icon.png'
+import menu_icon from './menu_icon.png'
+import search_icon from './search_icon.png'
+import about_img from './about_img.png'
+import contact_img from './contact_img.png'
+import cross_icon from './cross_icon.png'
+import bin_icon from './bin_icon.png'
+import stripe_logo from './stripe_logo.png'
+import razorpay_logo from './razorpay_logo.png'
 export const assets = {
         hero_img,
-        profile_icon
+        profile_icon,
+        logo,
+        cart_icon,
+        menu_icon,
+        search_icon,
+        about_img,
+        contact_img,
+        cross_icon,
+        bin_icon,
+        stripe_logo,
+        razorpay_logo,
 }
 
 export const products = [
