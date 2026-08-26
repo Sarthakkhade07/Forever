@@ -32,7 +32,8 @@ const Add = ({token}) => {
             formData.append("price", price)
             formData.append("category", category)
             formData.append("subCategory", subCategory)
-            formData.append("bestseller", bestseller)
+            // FormData serializes values as strings; send the explicit value expected by the API.
+            formData.append("bestSeller", bestseller ? "true" : "false")
             formData.append("sizes", JSON.stringify(sizes))
 
             image1 && formData.append("image1", image1)
@@ -51,6 +52,10 @@ const Add = ({token}) => {
                 setImage3(false)
                 setImage4(false)
                 setPrice('')
+                setCategory('Men')
+                setSubCategory('Topwear')
+                setBestseller(false)
+                setSizes([])
             }
             else{
                 toast.error(response.data.message)
@@ -100,7 +105,7 @@ const Add = ({token}) => {
         <div className=' flex flex-col sm:flex-row gap-2 w-full sm:gap-8'>
             <div>
                 <p className=' mb-2'>Product category</p>
-                <select onChange={(e)=>setCategory(e.target.value)} className=' w-full px-3 py-2' >
+                <select onChange={(e)=>setCategory(e.target.value)} value={category} className=' w-full px-3 py-2' >
                     <option value="Men">Men</option>
                     <option value="Women">Women</option>
                     <option value="Kids">Kids</option>
@@ -109,7 +114,7 @@ const Add = ({token}) => {
 
             <div>
                 <p className=' mb-2'>Subcategory</p>
-                <select onChange={(e)=>setSubCategory(e.target.value)} className=' w-full px-3 py-2' >
+                <select onChange={(e)=>setSubCategory(e.target.value)} value={subCategory} className=' w-full px-3 py-2' >
                     <option value="Topwear">Topwear</option>
                     <option value="Bottomwear">Bottomwear</option>
                     <option value="Winterwear">Winterwear</option>
@@ -118,7 +123,7 @@ const Add = ({token}) => {
 
             <div>
                 <p className=' mb-2'>Product Price</p>
-                <input onChange={(e)=>setPrice(e.target.value)} value={price} className=' w-full px-3 py-2 sm:w-30' type="Number" placeholder='25' />
+                <input onChange={(e)=>setPrice(e.target.value)} value={price} className=' w-full px-3 py-2 sm:w-30' type="number" min="0" placeholder='25' required />
             </div>
         </div>
 
@@ -149,7 +154,7 @@ const Add = ({token}) => {
         </div>
 
         <div className=' flex gap-2 mt-2'>
-            <input onChange={()=> setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id="bestseller" />
+            <input onChange={(e) => setBestseller(e.target.checked)} checked={bestseller} type="checkbox" id="bestseller" />
             <label className=' cursor-pointer ' htmlFor="bestseller">Add to bestseller</label>
         </div>
 
